@@ -1,0 +1,13 @@
+{% extends 'studadmin/base.html' %}
+{% block content %}
+    Welcome to Kai!
+    <br>
+    You can here:
+    <li><a href="{% url 'studadmin:choose_violation' %}">Choose violation</a></li>
+    <br>
+    <li><a href="{% url 'studadmin:students_list' %}">Look at our students</a></li>
+    <li><a href="{% url 'studadmin:add_promotion' %}">Add the new promotion to someone(if you have permission)</a></li>
+    <li><a href="{% url 'studadmin:add_violation' %}">Add the new violation to someone(if you have permission too c:<
+        )</a></li>
+
+{% endblock %}

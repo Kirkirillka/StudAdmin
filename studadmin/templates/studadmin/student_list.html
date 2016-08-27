@@ -1,0 +1,28 @@
+{% extends 'studadmin/base.html' %}
+{% block content %}
+    {% for student in student_list %}
+        <li>
+            <a href="{% url 'studadmin:student_detail' student.id %}">{{ student.first_name }} {{ student.last_name }}</a>
+            --> {{ student.speciality }}</li>
+
+
+    {% endfor %}
+
+    {# ..... **Now th pagination section** .... #}
+        {% if is_paginated %}
+            <div id="pagination">
+                <div class="page-links">
+                    {% if page_obj.has_previous %}
+                        <a href="{% url 'studadmin:students_list' page_obj.previous_page_number %}">Previous page</a>
+                    {% endif %}
+                    <div class="page-current">
+                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                    </div>
+                    {% if page_obj.has_next %}
+                        <a href="{% url "studadmin:students_list" page_obj.next_page_number %}">Next</a>
+                    {% endif %}
+                </div>
+            </div>
+        {% endif %}
+{% endblock %}
+

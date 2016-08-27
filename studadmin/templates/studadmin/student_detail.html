@@ -1,0 +1,23 @@
+
+{% extends 'studadmin/base.html' %}
+{% block content %}
+<H1> {{ student.first_name }} {{ student.last_name }}</H1>
+
+<H2>{{ student.speciality }}->{{ student.ticket }}:[{{ student.email }}]</H2>
+
+<H3>{{ student.entry_date }}-{{ student.graduation_time }}</H3>
+
+{% if student.promotion_set.all %}
+    Promotion:
+    {% for prom in student.promotion_set.all %}
+        <li>{{ prom }}</li>
+    {% endfor %}
+{% endif %}
+
+{% if student.violation_set.all %}
+    Violation:
+    {% for violation in student.violation_set.all %}
+        <li>{{ violation }}</li>
+    {% endfor %}
+{% endif %}
+{% endblock %}
