@@ -40,6 +40,10 @@ class Student(models.Model):
     class Meta:
         ordering=['first_name','last_name','speciality']
 
+class UserProfile(models.Model):
+    user=models.OneToOneField(User,unique=False)
+    student=models.OneToOneField(Student,unique=False)
+
 class Staff(models.Model):
     user=models.OneToOneField(User,default=None)
     student=models.OneToOneField(Student,on_delete=models.DO_NOTHING)

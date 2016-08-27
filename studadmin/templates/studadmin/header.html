@@ -12,26 +12,59 @@
                 </button>
                 <a class="navbar-brand" href="#">
                     {% load staticfiles %}
-                    <img src="{% static 'studadmin/img/logo.png' %}" >
+                    <img src="{% static 'studadmin/img/logo.png' %}">
                 </a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav ">
+                <ul class="nav navbar-nav">
                     <li class="active-link "><a href="{% url 'studadmin:students_list' 1 %}">All students <span
                             class="sr-only">(current)</span></a>
                     </li>
-                    <li class="active-link"><a href="{% url 'studadmin:add_student' %}">Add new student <span class="sr-only">(current)</span></a>
+                    <li class="active-link"><a href="{% url 'studadmin:add_student' %}">Add new student <span
+                            class="sr-only">(current)</span></a>
                     </li>
-                    <li class=""><a href="#">Add promotion <span class="sr-only">(current)</span></a>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle"
+                           data-toggle="dropdown"
+                           href="#">
+                            Promotion
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="disabled" role="presentation"><a role="menuitem" tabindex="-1" href="#">Add</a>
+                            </li>
+                            <li class="disabled" role="presentation"><a role="menuitem" tabindex="-1"
+                                                                        href="#">Change</a>
+                            </li>
+                            <li class="disabled" role="presentation"><a role="menuitem" tabindex="-1"
+                                                                        href="#">Delete</a>
+                            </li>
+                        </ul>
                     </li>
-                    <li class=""><a href="#">Add violation <span class="sr-only">(current)</span></a>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle"
+                           data-toggle="dropdown"
+                           href="#">
+                            Violation
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Add</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Change</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Delete</a></li>
+                        </ul>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right login">
-                    <li class="passive"><a href="#">Login</a></li>
-                    <li class="passive"><a href="#">Registration</a></li>
+                    {% if not user.is_authenticated %}
+                        <li class="active-link"><a href="{% url 'studadmin:login' %}">Login</a></li>
+                        <li class="passive disabled"><a href="#">Registration</a></li>
+                    {% else %}
+                        <li class="passive"><a>Hello,{{ user.username }}</a></li>
+                        <li class="active-link"><a href="{% url 'studadmin:logout' %}">Logout</a></li>
+                    {% endif %}
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->

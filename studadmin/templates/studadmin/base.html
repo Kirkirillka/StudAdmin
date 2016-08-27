@@ -9,8 +9,6 @@
     <link href="{% static 'studadmin/boostrap/css/bootstrap.css' %}" rel="stylesheet">
     <link href="{% static 'studadmin/boostrap/css/base.css' %}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="{% static 'studadmin/boostrap/js/bootstrap.js' %}"></script>
     <title>
         {% block title %}
             The registration of a new student
@@ -27,6 +25,10 @@
 </head>
 <body>
 {% block body %}
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{% static 'studadmin/boostrap/js/bootstrap.min.js' %}"></script>
     {% block header %}
         {% include 'studadmin/header.html' %}
     {% endblock %}
@@ -46,10 +48,7 @@
         {% include 'studadmin/footer.html' %}
     {% endblock %}
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="{% static 'studadmin/boostrap/js/bootstrap.min.js' %}"></script>
+
 {% endblock %}
 </body>
 </html>

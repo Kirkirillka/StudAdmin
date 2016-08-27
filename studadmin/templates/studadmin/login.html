@@ -1,0 +1,16 @@
+
+{% extends 'studadmin/base.html' %}
+
+{% block content %}
+    {% if error %}
+        {{ error }}
+    {% endif %}
+
+    {% if staff_form %}
+        <form method="post">
+        {% csrf_token %}
+        {{ staff_form }}
+        <input type="submit" value="Sing In">
+        </form>
+    {% endif %}
+{% endblock %}

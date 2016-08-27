@@ -1,7 +1,17 @@
 __author__ = 'kirill'
 
 from django import forms
-from .models import Student,Staff,Promotion,Violation,Habits
+from django.contrib.auth.models import User
+from .models import Student,Staff,Promotion,Violation,Habits,UserProfile
+
+
+
+class StaffForm(forms.ModelForm):
+    username=forms.CharField(max_length=100)
+    password=forms.CharField(widget=forms.PasswordInput)
+    class Meta:
+        model=Staff
+        fields=['username','password']
 
 
 class AddStudentForm(forms.ModelForm):
