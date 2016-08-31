@@ -55,23 +55,23 @@ class Staff(models.Model):
         return self.student.__str__()
 
 class Violation(models.Model):
-    name=models.CharField(max_length=200)
-    punishment=models.IntegerField()
-    student=models.ForeignKey(Student,default=None,unique=False)
-    start_date=models.DateField(default=timezone.now)
-    expity_time=models.DateField()
-    is_forgiven=models.BooleanField(default=False)
-    the_head=models.ForeignKey(Staff,related_name='head_violation')
+    name=models.CharField(max_length=200,verbose_name='Нарушение')
+    punishment=models.IntegerField(verbose_name='Размер штрафа')
+    student=models.ForeignKey(Student,default=None,unique=False,verbose_name='Нарушитель')
+    start_date=models.DateField(default=timezone.now,verbose_name='Время нарушения')
+    expected_time=models.DateField(verbose_name='Отработать до')
+    is_forgiven=models.BooleanField(default=False,verbose_name='Отработано')
+    the_head=models.ForeignKey(Staff,related_name='head_violation',verbose_name='Сотрудник')
 
     def __str__(self):
         return '[%s]:%s'%(self.punishment,self.name)
 
 class Promotion(models.Model):
-    name=models.CharField(max_length=200)
-    promotion=models.IntegerField()
-    student=models.ForeignKey(Student,default=None,unique=False)
-    start_date=models.DateField(default=timezone.now)
-    the_head=models.ForeignKey(Staff,related_name='head_promotion')
+    name=models.CharField(max_length=200,verbose_name='Поощрение')
+    promotion=models.IntegerField(verbose_name="Размер поощрения")
+    student=models.ForeignKey(Student,default=None,unique=False,verbose_name="Студент")
+    start_date=models.DateField(default=timezone.now,verbose_name="Время поощрения")
+    the_head=models.ForeignKey(Staff,related_name='head_promotion',verbose_name="Сотрудник")
 
     def __str__(self):
         return '[%s]:%s'%(self.promotion,self.name)

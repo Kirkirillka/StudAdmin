@@ -2,16 +2,17 @@
 
 {% extends 'studadmin/base.html' %}
 {% block content %}
-<form method="post" action="{% url 'studadmin:add_violation' %}">
-    {% for field in form %}
-    <fieldset class="form-group">
-    {{ field.label }}
-        {% load add_css %}
-        {{ field|add_css:'form-control' }}
-    </fieldset>
-    {% endfor %}
+    <form method="post" action="{% url 'studadmin:add_violation' %}">
+        {% for field in form %}
+            <fieldset class="form-group">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field.errors }}
+                {% load add_css %}
+                {{ field|add_css:'form-control' }}
+            </fieldset>
+        {% endfor %}
 
-    {% csrf_token %}
-    <input type="submit" value="Add violation">
-</form>
+        {% csrf_token %}
+        <button class="btn btn-default" type="submit" value="Add violation">Add violation</button>
+    </form>
 {% endblock %}

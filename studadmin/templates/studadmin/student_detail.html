@@ -1,27 +1,37 @@
 {% extends 'studadmin/base.html' %}
+
 {% block content %}
-    <H1> {{ student.first_name }} {{ student.last_name }}</H1>
+    <div class="page-header"><h1>Student's details</h1></div>
+    <div class="well-lg pull-left">
+        <H1> {{ student.first_name }} {{ student.last_name }}</H1>
 
-    <H2>{{ student.speciality }}->{{ student.ticket }}:[{{ student.email }}]</H2>
+        <H2>{{ student.speciality }}->{{ student.ticket }}:[{{ student.email }}]</H2>
 
-    <H3>{{ student.entry_date }}-{{ student.graduation_time }}</H3>
+        <H3>{{ student.entry_date }}-{{ student.graduation_time }}</H3>
 
-    {% if student.promotion_set.all %}
-        Promotion:
-        {% for prom in student.promotion_set.all %}
-            <li>{{ prom }}</li>
-        {% endfor %}
-    {% endif %}
+        {% if student.promotion_set.all %}
+            Promotion:
+            {% for prom in student.promotion_set.all %}
+                <li><a href="{% url 'studadmin:promotion_detail' prom.id %}">{{ prom }}</a></li>
+            {% endfor %}
+        {% endif %}
 
-    {% if student.violation_set.all %}
-        Violation:
-        {% for violation in student.violation_set.all %}
-            <li>{{ violation }}</li>
-        {% endfor %}
-    {% endif %}
+        {% if student.violation_set.all %}
+            Violation:
+            {% for violation in student.violation_set.all %}
+                <li><a href="{% url 'studadmin:violation_detail' violation.id %}">{{ violation }}</a></li>
+            {% endfor %}
+        {% endif %}
+    </div>
 {% endblock %}
 
 
 {% block menu %}
-        <a href="{% url 'studadmin:add_violation_to_student'  student.id %}">Add violation to student</a>
+    <div class="well-sm">
+        <ul class="nav  nav-stacked nav-list pull-left">
+            <li class="nav-header">Available action</li>
+            <li><a class="btn btn-info"  href="{% url 'studadmin:add_violation_to_student'  student.id %}">Add violation to student</a></li>
+            <li><a class="btn btn-info"  href="{% url 'studadmin:add_promotion_to_student'  student.id %}">Add promotion to student</a></li>
+        </ul>
+    </div>
 {% endblock %}
