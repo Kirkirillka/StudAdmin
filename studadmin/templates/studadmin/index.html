@@ -1,43 +1,62 @@
 {% extends 'studadmin/base.html' %}
 {% block content %}
-<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
-  <li><a tabindex="-1" href="#">Действие</a></li>
-  <li><a tabindex="-1" href="#">Другое действие</a></li>
-  <li><a tabindex="-1" href="#">Еще ссылка</a></li>
-  <li class="divider"></li>
-  <li><a tabindex="-1" href="#">Доп. ссылка</a></li>
-</ul>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+        <li><a tabindex="-1" href="#">Действие</a></li>
+        <li><a tabindex="-1" href="#">Другое действие</a></li>
+        <li><a tabindex="-1" href="#">Еще ссылка</a></li>
+        <li class="divider"></li>
+        <li><a tabindex="-1" href="#">Доп. ссылка</a></li>
+    </ul>
 
     <div class="btn-group">
-  <button class="btn">1</button>
-  <button class="btn">2</button>
-  <button class="btn">3</button>
-</div>
+        <button class="btn">1</button>
+        <button class="btn">2</button>
+        <button class="btn">3</button>
+    </div>
+
+
+    <form>
+        <fieldset>
+            <legend>Название формы</legend>
+            <label>Описание поля</label>
+            <input type="text" placeholder="Введите текст…">
+            <span class="help-block">Подсказка или доп. информация.</span>
+            <label class="checkbox">
+                <input type="checkbox"> Нажми здесь и выдели checkbox
+            </label>
+            <button type="submit" class="btn">Отправить</button>
+        </fieldset>
+    </form>
+
 
 
 
     <div class="dropdown">
- <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Выпадающий список
-</button>
-<ul class="dropdown-menu">
- <li><a href="#">HTML</a></li>
- <li><a href="#">CSS</a></li>
- <li><a href="#">JavaScript</a></li>
-</ul>
-</div>
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Выпадающий список
+        </button>
+        <ul class="dropdown-menu">
+            <li><a href="#">HTML</a></li>
+            <li><a href="#">CSS</a></li>
+            <li><a href="#">JavaScript</a></li>
+        </ul>
+    </div>
 
 
     <div class="dropdown">
-  <button class="btn btn-primary dropdown-toggle sr-only" type="button" id="dropdownMenu1" data-toggle="dropdown">
-        Dropdown
-        <span class="caret"></span>
-      </button>
-  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Действие</a></li>
-    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Другое действие</a></li>
-    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Что-то еще</a></li>
-    <li role="presentation" class="divider"></li>
-    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Отдельная ссылка</a></li>
-  </ul>
-</div>
+        <button class="btn btn-primary dropdown-toggle sr-only" type="button" id="dropdownMenu1" data-toggle="dropdown">
+            Dropdown
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Действие</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Другое действие</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Что-то еще</a></li>
+            <li role="presentation" class="divider"></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Отдельная ссылка</a></li>
+        </ul>
+    </div>
+
+
+
+
 {% endblock %}

@@ -1,42 +1,61 @@
-body{
-    font-family: 'Open Sans',sans-serif;
+body {
+    font-family: 'Open Sans', sans-serif;
     font-size: 12px;
     font-weight: normal;
 
     background-color: #fdfcfb;
 }
 
-header{
+header {
     margin: 10px 0 10px 0;
 }
 
-.menu{
+.menu {
     background: #fefefe;
-    border:0;
+    border: 0;
     box-shadow: 0 0 5px #2aabd2;
 
 }
 
-
-.navbar-brand{
-    padding-right: 80px;
+.navbar-pad {
+    margin: 20px 20px 60px 0;
 }
 
-.navbar-brand img{
+.img-specified{
+}
+.pagination-center{alignment: center;}
+
+.img-specified > img{
+
+    height:100px;
+    width: auto;
+}
+
+
+.navbar-brand img {
     position: relative;
-    top:-30px;
+    top: -30px;
 }
 
-.navbar-default .navbar-nav > li >a{
-    color:#2b669a;
-    font-size:12px;
+.navbar-default .navbar-nav > li > a {
+    color: #2b669a;
+    font-size: 12px;
     margin: 0 2px 0 2px;
 }
 
-.navbar-default .navbar-nav >li.active-link >a {
+.navbar-default .navbar-nav > li.active-link > a {
     border-bottom: 1px solid #c9302c;
 }
 
-.navbar-default .navbar-nav:not(.login) >li >a:hover {
+.navbar-default .navbar-nav:not(.login) > li > a:hover {
     border-bottom: 1px solid #2e6da4;
+}
+
+.vcenter {
+    position: relative;
+     top: 50%;
+}
+
+.label-notification{
+    position: relative;
 }

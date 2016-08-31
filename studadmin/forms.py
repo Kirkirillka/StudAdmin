@@ -5,7 +5,6 @@ from django.contrib.auth.models import User
 from .models import Student,Staff,Promotion,Violation,Habits,UserProfile
 
 
-
 class StaffForm(forms.ModelForm):
     username=forms.CharField(max_length=100)
     password=forms.CharField(widget=forms.PasswordInput)
@@ -20,6 +19,7 @@ class AddStudentForm(forms.ModelForm):
         model=Student
         fields='__all__'
 
+
 class AddStaffForm(forms.ModelForm):
     class Meta:
         model=Staff
@@ -30,15 +30,23 @@ class AddPromotion(forms.ModelForm):
         model=Promotion
         fields='__all__'
 
+
 class AddViolation(forms.ModelForm):
     class Meta:
         model=Violation
         fields='__all__'
 
+
+
+
+
+
+
 class AddHabitsForm(forms.Form):
     habits=forms.ModelMultipleChoiceField(Habits.objects.all())
     class Meta:
         fields=['habits']
+
 
 class ChooseViolation(forms.Form):
     violations=forms.ModelMultipleChoiceField(Violation.objects.all())

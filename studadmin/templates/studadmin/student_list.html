@@ -1,28 +1,41 @@
 {% extends 'studadmin/base.html' %}
 {% block content %}
-    {% for student in student_list %}
-        <li>
-            <a href="{% url 'studadmin:student_detail' student.id %}">{{ student.first_name }} {{ student.last_name }}</a>
-            --> {{ student.speciality }}</li>
+    <div class="container-fluid">
+        {% for student in student_list %}
+            <ul>
+                <h4><a href="{% url 'studadmin:student_detail' student.id %}">{{ student.first_name }} {{ student.last_name }}</a>
+                --> {{ student.speciality }}
+            </h4></ul>
 
 
-    {% endfor %}
 
-    {# ..... **Now th pagination section** .... #}
+        {% endfor %}
+
+        {# ..... **Now th pagination section** .... #}
         {% if is_paginated %}
-            <div id="pagination">
-                <div class="page-links">
-                    {% if page_obj.has_previous %}
-                        <a href="{% url 'studadmin:students_list' page_obj.previous_page_number %}">Previous page</a>
-                    {% endif %}
-                    <div class="page-current">
-                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
-                    </div>
-                    {% if page_obj.has_next %}
-                        <a href="{% url "studadmin:students_list" page_obj.next_page_number %}">Next</a>
-                    {% endif %}
-                </div>
+            <div class="pagination pagination-center">
+                {% if not page_obj.has_previous %}
+                    <li class="disabled">
+                        <a>Previous page</a>
+                        {% else %}
+                    <li>
+                    <a href="{% url 'studadmin:students_list' page_obj.previous_page_number %}">Previous page</a>
+                {% endif %}
+
+                </li>
+                <li class="active">
+                    <a href="#"> Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</a>
+                </li>
+
+                {% if  page_obj.has_next %}
+                    <li>
+                        <a href="{% url "studadmin:students_list" page_obj.next_page_number %}">Next page</a>
+                        {% else %}
+                    <li class="disabled"><a>Next page</a>
+                {% endif %}
+                </li>
             </div>
         {% endif %}
+    </div>
 {% endblock %}
 

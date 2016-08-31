@@ -2,7 +2,14 @@
 {% extends 'studadmin/base.html' %}
 {% block content %}
 <form method="post">
-    {{ form.as_p }}
+    {% for field in form %}
+                <fieldset class="form-group">
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {{ field.errors }}
+                    {% load add_css %}
+                    {{ field|add_css:'form-control' }}
+                </fieldset>
+            {% endfor %}
     {% csrf_token %}
     <input type="submit" value="Add promotion">
 </form>

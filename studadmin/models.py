@@ -21,17 +21,17 @@ class Habits(models.Model):
         return self.name
 
 class Student(models.Model):
-    first_name=models.CharField(max_length=100)
-    last_name=models.CharField(max_length=100)
+    first_name=models.CharField(max_length=100,verbose_name='Фамилия')
+    last_name=models.CharField(max_length=100,verbose_name='Имя')
     email=models.EmailField()
-    mobile=models.CharField(max_length=12,blank=True)
-    speciality=models.ForeignKey(Speciality,on_delete=models.DO_NOTHING)
-    room = models.IntegerField(default=0)
-    entry_date=models.DateField(default=timezone.now)
-    graduation_time=models.DateField()
-    ticket=models.IntegerField(default=0)
-    about = models.TextField(unique=False, blank=True)
-    habits=models.ManyToManyField(Habits,default=None,blank=True)
+    mobile=models.CharField(max_length=12,blank=True,verbose_name='Мобильный телефон')
+    speciality=models.ForeignKey(Speciality,on_delete=models.DO_NOTHING,verbose_name='Направление')
+    room = models.IntegerField(default=0,verbose_name='Комната проживания')
+    entry_date=models.DateField(default=timezone.now,verbose_name='Дата начала обучения')
+    graduation_time=models.DateField(default=timezone.datetime(day=29,month=8,year=2020),verbose_name='Дата окончания обучения')
+    ticket=models.IntegerField(default=0,verbose_name='Студенческий билет')
+    about = models.TextField(unique=False, blank=True,verbose_name='О себе')
+    habits=models.ManyToManyField(Habits,default=None,blank=True,verbose_name='Увлечения')
 
 
     def __str__(self):
@@ -41,8 +41,8 @@ class Student(models.Model):
         ordering=['first_name','last_name','speciality']
 
 class UserProfile(models.Model):
-    user=models.OneToOneField(User,unique=False)
-    student=models.OneToOneField(Student,unique=False)
+    user=models.OneToOneField(User,unique=True,on_delete=models.DO_NOTHING)
+    student=models.OneToOneField(Student,unique=True,on_delete=models.DO_NOTHING)
 
 class Staff(models.Model):
     user=models.OneToOneField(User,default=None)
@@ -57,7 +57,7 @@ class Staff(models.Model):
 class Violation(models.Model):
     name=models.CharField(max_length=200)
     punishment=models.IntegerField()
-    student=models.OneToOneField(Student,default=None,unique=False)
+    student=models.ForeignKey(Student,default=None,unique=False)
     start_date=models.DateField(default=timezone.now)
     expity_time=models.DateField()
     is_forgiven=models.BooleanField(default=False)
@@ -69,7 +69,7 @@ class Violation(models.Model):
 class Promotion(models.Model):
     name=models.CharField(max_length=200)
     promotion=models.IntegerField()
-    student=models.ManyToManyField(Student,default=None)
+    student=models.ForeignKey(Student,default=None,unique=False)
     start_date=models.DateField(default=timezone.now)
     the_head=models.ForeignKey(Staff,related_name='head_promotion')
 

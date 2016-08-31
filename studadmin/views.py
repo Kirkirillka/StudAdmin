@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 from django.http import HttpResponse,HttpResponseRedirect
 from django.shortcuts import reverse
 from django.views import View
@@ -46,7 +46,7 @@ class Login(View):
 
 class StudentListView(ListView):
     model = Student
-    paginate_by = 10
+    paginate_by = 20
 
 
 class StudentDetailView(DetailView):
@@ -75,6 +75,7 @@ class AddViolationView(View):
     def get(self, request, *args, **kwargs):
         usr = request.user
         form = AddViolation()
+        print(form.fields)
         return render(request, 'studadmin/add_violation.html', {'form': form})
 
     def post(self, request, *args, **kwargs):
@@ -102,6 +103,10 @@ class AddStudentView(View):
                 return render(request, 'studadmin/add_student.html', {'student_form': AddStudentForm(),
                                                                       'habits_form': AddHabitsForm(),
                                                                       'notification': 'User has been succesfully added '})
+            else:
+                return render(request, 'studadmin/add_student.html', {'student_form': student_form,
+                                                                      'habits_form': habits_form,
+                                                                      'error':'Error is occured'})
         return render(request, 'studadmin/add_student.html', {'student_form': AddStudentForm(),
                                                               'habits_form': AddHabitsForm(),
                                                               'error': 'Bad credentials'})
@@ -123,3 +128,14 @@ class ChooseViolationView(View):
 
 
 
+class AddViolationToStudentView(View):
+    def get(self,request,*args,**kwargs):
+        student=kwargs.get('student_id')
+        print(student)
+        form=AddViolation(initial={'student':student})
+        return render(request, 'studadmin/add_violation.html', {'form': form})
+
+
+    def post(self,request,*args,**kwargs):
+        if kwargs.get('student_id')!=None and request.user.is_authenticated and request.user.has_perm('studadmin.add_violation'):
+            pass
