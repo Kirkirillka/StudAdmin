@@ -14,7 +14,7 @@ from django.contrib.auth import authenticate, login, logout
 
 class index(View):
     def get(self, request, *args, **kwargs):
-        return render(request, 'studadmin/index.html')
+        return HttpResponseRedirect(reverse('studadmin:students_list',kwargs={'page':1}))
 
 
 class Logout(View):
