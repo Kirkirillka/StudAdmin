@@ -21,7 +21,7 @@ app_name = 'studadmin'
 
 
 violation_patterns = [url(r'^add_violetion/$', login_required(AddViolationView.as_view()), name='add_violation'),
-                      url(r'add_violetion_to_student/(?P<student_id>[0-9]+)/$', AddViolationToStudentView.as_view(),
+                      url(r'add_violetion_to_student/(?P<student_id>[0-9]+)/$', login_required(AddViolationToStudentView.as_view()),
                           name='add_violation_to_student'),
                       url(r'^(?P<pk>[0-9]+)/$', login_required(ViolationDetail.as_view()), name='violation_detail'),
                       url(r'^choose_violation/$', ChooseViolationView.as_view(), name='choose_violation'),
@@ -29,7 +29,7 @@ violation_patterns = [url(r'^add_violetion/$', login_required(AddViolationView.a
 
 promotion_patterns = [url(r'^add_promotion/$', login_required(AddPromotionView.as_view()), name='add_promotion'),
                       url(r'^(?P<pk>[0-9]+)/$', login_required(PromotionDetail.as_view()), name='promotion_detail'),
-                      url(r'add_promotion_to_student /(?P<student_id>[0-9]+)/$', AddPromotionToStudentView.as_view(),
+                      url(r'add_promotion_to_student /(?P<student_id>[0-9]+)/$', login_required(AddPromotionToStudentView.as_view()),
                           name='add_promotion_to_student'), ]
 
 
