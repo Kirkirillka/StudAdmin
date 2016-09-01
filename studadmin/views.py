@@ -63,6 +63,7 @@ class StudentDetailView(DetailView):
 
 
 class AddPromotionView(View):
+
     def get(self, request, *args, **kwargs):
         usr = request.user
         form = AddPromotion()

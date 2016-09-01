@@ -9,21 +9,20 @@
         <form method="post" class="form-horizontal">
             {% csrf_token %}
             {% for field in staff_form %}
-                <div class="control-group">
+                <fieldset class="form-group">
                     <label class="control-label">{{ field.label_tag }}</label>
                     <div class="controls">
-                        {{ field }}
+                        {% load add_css %}
+                        {{ field|add_css:'form-control' }}
                     </div>
-                </div>
+                </fieldset>
             {% endfor %}
 
-        <span class="divider"></span>
-
-            <div class="control-group">
+            <fieldset class="form-group">
                 <div class="controls">
                     <button type="submit" class="btn btn-primary">Sing In</button>
                 </div>
-            </div>
+            </fieldset>
         </form>
     {% endif %}
 {% endblock %}

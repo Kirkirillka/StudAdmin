@@ -1,41 +1,112 @@
 {% extends 'studadmin/base.html' %}
 {% block content %}
-    <div class="container-fluid">
+    <div class="container-fluid well">
         {% for student in student_list %}
             <ul>
-                <h4><a href="{% url 'studadmin:student_detail' student.id %}">{{ student.first_name }} {{ student.last_name }}</a>
-                --> {{ student.speciality }}
-            </h4></ul>
-
-
-
+                <h5>
+                    <a href="{% url 'studadmin:student_detail' student.id %}">{{ student.first_name|title }} {{ student.last_name }}</a>
+                    --> {{ student.speciality }}
+                </h5></ul>
         {% endfor %}
 
-        {# ..... **Now th pagination section** .... #}
-        {% if is_paginated %}
-            <div class="pagination pagination-center">
-                {% if not page_obj.has_previous %}
-                    <li class="disabled">
-                        <a>Previous page</a>
-                        {% else %}
-                    <li>
-                    <a href="{% url 'studadmin:students_list' page_obj.previous_page_number %}">Previous page</a>
-                {% endif %}
 
-                </li>
-                <li class="active">
-                    <a href="#"> Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</a>
-                </li>
 
-                {% if  page_obj.has_next %}
-                    <li>
-                        <a href="{% url "studadmin:students_list" page_obj.next_page_number %}">Next page</a>
-                        {% else %}
-                    <li class="disabled"><a>Next page</a>
+        <ul class="pager">
+            {% if page_obj.has_previous %}
+                    <li class="previous">
+                        <a class="page-link"
+                           href="{% url 'studadmin:students_list' page_obj.previous_page_number %}"
+                           aria-label="Previous">
+                            <span aria-hidden="true">&laquo; Go back</span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="previous disabled">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo; Go back</span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                    </li>
                 {% endif %}
-                </li>
-            </div>
-        {% endif %}
+            <li>
+                <a href="#">Page {{ page_obj.number }}
+                        of {{ page_obj.paginator.num_pages }}</a>
+            </li>
+            {% if page_obj.has_next %}
+                    <li class="next">
+                        <a class="page-link"
+                           href="{% url 'studadmin:students_list' page_obj.next_page_number %}"
+                           aria-label="Previous">
+                            <span aria-hidden="true">Go forward &raquo;</span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="next disabled">
+                        <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true">Go forward &raquo;</span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </li>
+                {% endif %}
+        </ul>
+
+
     </div>
+
+
+
+
+    {% block menu %}
+
+    {% endblock %}
 {% endblock %}
 
+
+    {# ..... **Now th pagination section** .... #}
+    {% if is_paginated %}
+        <nav aria-label="Page navigation" class="vcenter">
+            <ul class="pagination vcenter pagination-center">
+                {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link"
+                           href="{% url 'studadmin:students_list' page_obj.previous_page_number %}"
+                           aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                    </li>
+                {% endif %}
+                <li class="page-item">
+                    <a class="page-item active" href="#"> Page {{ page_obj.number }}
+                        of {{ page_obj.paginator.num_pages }}</a>
+                </li>
+                {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link"
+                           href="{% url 'studadmin:students_list' page_obj.next_page_number %}"
+                           aria-label="Previous">
+                            <span aria-hidden="true">&raquo;</span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+
+    {% endif %}

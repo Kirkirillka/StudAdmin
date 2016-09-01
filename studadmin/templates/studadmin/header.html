@@ -63,7 +63,7 @@
                         <li class="passive disabled"><a href="#">Registration</a></li>
                     {% else %}
                         <li class="passive"><a>Hello,{{ user.username }}</a></li>
-                        <!--<li class="active-link"><a href="{% url 'studadmin:logout' %}">Logout</a></li>-->
+                        <li class="active-link"><a href="{% url 'studadmin:logout' %}">Logout</a></li>
                     {% endif %}
                 </ul>
             </div><!-- /.navbar-collapse -->

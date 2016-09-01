@@ -1,6 +1,7 @@
 __author__ = 'kirill'
 
 from django.conf.urls import url, include
+from django.contrib.auth.decorators import login_required
 from .views import AddStudentView, \
     StudentDetailView, \
     AddPromotionView, \
@@ -19,16 +20,16 @@ app_name = 'studadmin'
 
 
 
-violation_patterns = [url(r'^add_violetion/$', AddViolationView.as_view(), name='add_violation'),
+violation_patterns = [url(r'^add_violetion/$', login_required(AddViolationView.as_view()), name='add_violation'),
                       url(r'add_violetion_to_student/(?P<student_id>[0-9]+)/$', AddViolationToStudentView.as_view(),
                           name='add_violation_to_student'),
-                      url(r'^(?P<pk>[0-9]+)/$', ViolationDetail.as_view(), name='violation_detail'),
+                      url(r'^(?P<pk>[0-9]+)/$', login_required(ViolationDetail.as_view()), name='violation_detail'),
                       url(r'^choose_violation/$', ChooseViolationView.as_view(), name='choose_violation'),
                       ]
 
-promotion_patterns = [url(r'^add_promotion/$', AddPromotionView.as_view(), name='add_promotion'),
-                      url(r'^(?P<pk>[0-9]+)/$', PromotionDetail.as_view(), name='promotion_detail'),
-                      url(r'add_promotion_to_student/(?P<student_id>[0-9]+)/$', AddPromotionToStudentView.as_view(),
+promotion_patterns = [url(r'^add_promotion/$', login_required(AddPromotionView.as_view()), name='add_promotion'),
+                      url(r'^(?P<pk>[0-9]+)/$', login_required(PromotionDetail.as_view()), name='promotion_detail'),
+                      url(r'add_promotion_to_student /(?P<student_id>[0-9]+)/$', AddPromotionToStudentView.as_view(),
                           name='add_promotion_to_student'), ]
 
 

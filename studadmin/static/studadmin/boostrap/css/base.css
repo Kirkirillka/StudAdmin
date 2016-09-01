@@ -21,16 +21,18 @@ header {
     margin: 20px 20px 60px 0;
 }
 
-.img-specified{
+.img-specified {
 }
-.pagination-center{alignment: center;}
 
-.img-specified > img{
+.pagination-center {
+    alignment: center;
+}
 
-    height:100px;
+.img-specified > img {
+
+    height: 100px;
     width: auto;
 }
-
 
 .navbar-brand img {
     position: relative;
@@ -52,10 +54,15 @@ header {
 }
 
 .vcenter {
-    position: relative;
-     top: 50%;
+
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+
 }
 
-.label-notification{
+.label-notification {
     position: relative;
 }
